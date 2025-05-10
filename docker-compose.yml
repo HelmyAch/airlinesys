@@ -2,15 +2,24 @@ version: '3.8'
 
 services:
   web:
-    build: .  # Utilise le Dockerfile dans le répertoire courant pour construire l'image
+    build: .  # Utilise le Dockerfile pour construire l'image
     volumes:
-      - .:/app  # Monte ton répertoire local dans le conteneur
-      - db_data:/app/db  # Monte un volume pour la base de données SQLite
+      - .:/app  # Monte le code source local
+      - db_data:/app/db  # Volume pour la base de données SQLite
     ports:
-      - "8000:8000"  # Expose le port 8000
+      - "8000:8000"
     environment:
-      - DEBUG=True  # Optionnel : variable d'environnement
-    command: python manage.py runserver 0.0.0.0:8000  # Lance le serveur Django
+      - DEBUG=True
+    command: sh -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
 
 volumes:
-  db_data:  # Volume persistant pour la base de données SQLite
+  db_data:
