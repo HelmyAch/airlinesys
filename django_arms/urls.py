@@ -19,8 +19,8 @@ from django_prometheus import exports
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('django_prometheus.urls')),  # <--- AJOUTÉ ICI
+    path('metrics', exports.ExportToDjangoView, name='prometheus-metrics'),  # Déplacez ceci ici
+    path('', include('django_prometheus.urls')),  # <--- Toujours conserver cette ligne
     path('', include('armsApp.urls')),
-    path('metrics', exports.ExportToDjangoView, name='prometheus-metrics'),
+ ]
 
-]
