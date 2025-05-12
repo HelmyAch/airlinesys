@@ -2,24 +2,19 @@ version: '3.8'
 
 services:
   web:
-    build: .  # Utilise le Dockerfile pour construire l'image
+    build: .  # Uses the Dockerfile in the current directory
     volumes:
-      - .:/app  # Monte le code source local
-      - db_data:/app/db  # Volume pour la base de données SQLite
+      - .:/app         # Mounts local source code into the container
+      - db_data:/app/db  # Volume for SQLite database
+    working_dir: /app   # Ensures all commands run from /app
     ports:
       - "8000:8000"
     environment:
       - DEBUG=True
-    command: sh -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000"
-    depends_on:
-      - prometheus
-
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+    command: >
+      sh -c "pip install -r requirements.txt &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
 
 volumes:
   db_data:
