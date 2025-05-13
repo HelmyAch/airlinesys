@@ -25,12 +25,19 @@ SECRET_KEY = 'django-insecure-j7xv%)66l8u0^8sxnj7()z$zll8&a2*_h2r84yeo9f2fidx8^7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '172.19.0.2', 'tunisair-web']
+=======
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'web','tunisair-web-1']
+>>>>>>> 9efe092ddad2fe2f3722e48457a65a6b0ad9289b
 
 
 # Application definition
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9efe092ddad2fe2f3722e48457a65a6b0ad9289b
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,7 +53,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+<<<<<<< HEAD
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
+=======
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',  # Gardez une seule instance ici
+>>>>>>> 9efe092ddad2fe2f3722e48457a65a6b0ad9289b
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,15 +65,27 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
 ]
+=======
+ ]
+
+>>>>>>> 9efe092ddad2fe2f3722e48457a65a6b0ad9289b
 
 ROOT_URLCONF = 'django_arms.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [],
+=======
+        
+
+        'DIRS': [os.path.join(BASE_DIR, 'armsApp', 'templates')],
+    
+>>>>>>> 9efe092ddad2fe2f3722e48457a65a6b0ad9289b
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,7 +113,10 @@ DATABASES = {
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9efe092ddad2fe2f3722e48457a65a6b0ad9289b
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

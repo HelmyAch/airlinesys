@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .  # Uses the Dockerfile in the current directory
+    volumes:
+      - .:/app         # Mounts local source code into the container
+      - db_data:/app/db  # Volume for SQLite database
+    working_dir: /app   # Ensures all commands run from /app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+    command: >
+      sh -c "pip install -r requirements.txt &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  db_data:

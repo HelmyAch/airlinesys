@@ -1,0 +1,17 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+
+# Environnements
+.env
+venv/
+ENV/
+*.env
+
+# Docker
+*.log
+*.pid
+
+# VS Code (si tu utilises)
+.vscode/
